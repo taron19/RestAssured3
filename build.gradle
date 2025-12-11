@@ -40,7 +40,7 @@ dependencies {
 
 task testRemoteRunner(type: Test){
     useJUnitPlatform{
-        includeTags("ApiRegistration","Api")
+        includeTags("RestAssured")
     }
     systemProperties(System.getProperties())
 

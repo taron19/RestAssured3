@@ -21,7 +21,7 @@ public class TestBase {
     @AfterAll
     static void tearDown() {
         if (WebDriverRunner.hasWebDriverStarted()) {
-            getWebDriver().close();
+            getWebDriver().quit();
         }
     }
 }

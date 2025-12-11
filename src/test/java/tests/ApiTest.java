@@ -9,6 +9,7 @@ import models.ISBN;
 import models.WithLogin;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import specs.SpecCustoms;
 
@@ -20,11 +21,10 @@ import static helpers.CustomApiListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
-
+@Tag("RestAssured")
 public class ApiTest extends TestBase {
     private static final String randomISBN1 = "9781449337711";
     private static final String randomISBN2 = "9781593277574";
-
 
     /**
      * Метод для авторизации
