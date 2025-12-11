@@ -38,7 +38,7 @@ dependencies {
     )
 }
 
-task testRemoteRunner(type: Test){
+task testRestAssuredRunner(type: Test){
     useJUnitPlatform{
         includeTags("RestAssured")
     }
