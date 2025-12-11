@@ -13,8 +13,7 @@ public class TestBase {
 
     @BeforeAll
     public static void setUp() {
-        Configuration.headless = true;
-        Configuration.browserSize = "1920x1080";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         RestAssured.baseURI = "https://demoqa.com";
         Configuration.baseUrl="https://demoqa.com";
 
