@@ -23,10 +23,4 @@ public class TestBase {
 
     }
 
-    @AfterAll
-    static void tearDown() {
-        if (WebDriverRunner.hasWebDriverStarted()) {
-            getWebDriver().quit();
-        }
-    }
 }
