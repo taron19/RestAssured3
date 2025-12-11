@@ -43,11 +43,9 @@ public class LoginExtension implements BeforeEachCallback {
             withLogin = extensionContext.getRequiredTestClass().getAnnotation(WithLogin.class);
         }
 
-        String usernameDefault = (withLogin != null) ? withLogin.username() : "Clint";
-        String passwordDefault = (withLogin != null) ? withLogin.password() : "Clint123456@";
+        String username = (withLogin != null) ? withLogin.username() : "Clint";
+        String password = (withLogin != null) ? withLogin.password() : "Clint123456@";
 
-        String username = System.getProperty("username", usernameDefault);
-        String password = System.getProperty("password", passwordDefault);
 
         UserLoginData loginData = new UserLoginData(username, password);
 

@@ -1,11 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
