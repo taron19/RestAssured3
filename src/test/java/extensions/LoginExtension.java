@@ -37,8 +37,12 @@ public class LoginExtension implements BeforeEachCallback {
     private static String token;
     @Getter
     private static final UserPage USER_PAGE = new UserPage();
-
+    @Getter
     private static final String ENDPOINT_LOGIN = "/Account/v1/Login";
+    @Getter
+    private final String login = System.getProperty("login", "Clint");
+    @Getter
+    private final String credentials = System.getProperty("password", "Clint");
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
@@ -53,11 +57,11 @@ public class LoginExtension implements BeforeEachCallback {
         //System.getProperty
         String username = withLogin != null && !withLogin.username().isEmpty()
                 ? withLogin.username()
-                : System.getProperty("login", "Clint");
+                : login;
 
         String password = withLogin != null && !withLogin.password().isEmpty()
                 ? withLogin.password()
-                : System.getProperty("password", "Clint123456@");
+                : credentials;
 
 
         UserLoginData loginData = new UserLoginData(username, password);
