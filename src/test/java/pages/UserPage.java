@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
@@ -29,7 +30,8 @@ public class UserPage {
     }
 
     public UserPage bookRemovalByIndex(int index){
-        $$("#delete-record-undefined").get(index).click();
+        ElementsCollection deleteButtons = $$("span[title='Delete']");
+        deleteButtons.get(index).click();
         $("#closeSmallModal-ok").click();
         return this;
     }
