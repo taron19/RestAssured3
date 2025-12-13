@@ -35,6 +35,7 @@ public class ApiTest extends TestBase {
         step("проверка авторизации", () -> {
             USER_PAGE.checkUsername(USERNAME);
         });
+
     }
 
 

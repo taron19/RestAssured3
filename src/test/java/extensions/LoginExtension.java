@@ -48,6 +48,8 @@ public class LoginExtension implements BeforeEachCallback {
             withLogin = extensionContext.getRequiredTestClass().getAnnotation(WithLogin.class);
         }
 
+        //если аннотацию нашли(withLogin != null true) и логин не пустой(НО У НАС ПУСТОЙ СПЕЦИАЛЬНО СДЕЛАЛИ ЧТОБЫ БРАТЬ ИЗ ПЕРЕМ ОКРУЖЕНИЯ)
+        //System.getProperty
         String username = withLogin != null && !withLogin.username().isEmpty()
                 ? withLogin.username()
                 : System.getProperty("login", "Clint");
@@ -86,6 +88,11 @@ public class LoginExtension implements BeforeEachCallback {
             getWebDriver().manage().addCookie(new Cookie("expires", expires));
             getWebDriver().manage().addCookie(new Cookie("token", token));
         });
+
+        step("авторизация прошла успешно,вы зашли под такими данными", () -> {
+            System.out.printf("логин %s \n пароль %s ",System.getProperty("login"),System.getProperty("password"));
+        });
+
 
         step("Открываем профиль уже с куки", () -> USER_PAGE.openBrowserAuthorized());
 
