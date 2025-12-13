@@ -8,6 +8,7 @@ import models.WithLogin;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
+import pages.UserPage;
 import specs.SpecCustoms;
 
 
@@ -33,6 +34,10 @@ public class LoginExtension implements BeforeEachCallback {
     private static String expires;
     @Getter
     private static String token;
+    @Getter
+    private static final UserPage USER_PAGE = new UserPage();
+
+    private static final String ENDPOINT_LOGIN = "/Account/v1/Login";
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
@@ -55,14 +60,16 @@ public class LoginExtension implements BeforeEachCallback {
                 .spec(SpecCustoms.requestSpecification)
                 .body(loginData)
                 .when()
-                .post("/Account/v1/Login")
+                .post(ENDPOINT_LOGIN)
                 .then()
                 .spec(SpecCustoms.responseSpecificationBuilder(200))
                 .extract().response());
 
 
-        step(" Открываем любую легкую страницу, чтобы браузер знал домен", () ->
-                open("/images/Toolsqa.jpg"));
+        step(" Открываем любую легкую страницу, чтобы браузер знал домен", () -> {
+            USER_PAGE.openBrowser();
+        });
+
 
         step("Добавляем куки в WebDriver", () -> {
 
@@ -75,10 +82,9 @@ public class LoginExtension implements BeforeEachCallback {
             getWebDriver().manage().addCookie(new Cookie("token", token));
         });
 
-        step("Открываем профиль уже с куки", () -> open("/profile"));
+        step("Открываем профиль уже с куки", () -> USER_PAGE.openBrowserAuthorized());
 
 
-        System.out.println();
     }
 
 
