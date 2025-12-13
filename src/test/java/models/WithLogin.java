@@ -19,6 +19,6 @@ import java.lang.annotation.Target;
 @ExtendWith(LoginExtension.class)
 public @interface WithLogin {
 
-    String username() default "Clint";
-    String password() default "Clint123456@";
+    String username() default "";
+    String password() default "";
 }

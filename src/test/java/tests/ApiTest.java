@@ -29,7 +29,7 @@ public class ApiTest extends TestBase {
      * Можно просто @WithLogin, если дефолтные данные устраивают
      */
     @Test
-    @WithLogin(username = "Clint", password = "Clint123456@")
+    @WithLogin
     @DisplayName("authorization")
     public void authorization() {
         step("проверка авторизации", () -> {
@@ -39,7 +39,7 @@ public class ApiTest extends TestBase {
 
 
     @Test
-    @WithLogin(username = "Clint", password = "Clint123456@")
+    @WithLogin
     public void addABookToBasket() {
         step("очищаем корзину", REQUESTS::clearBasket);
 
@@ -63,7 +63,7 @@ public class ApiTest extends TestBase {
 
 
     @Test
-    @WithLogin(username = "Clint", password = "Clint123456@")
+    @WithLogin
     public void deleteABookFromBasket() {
 
         step("удаление книги " + BOOK_TITLE2, () -> {
