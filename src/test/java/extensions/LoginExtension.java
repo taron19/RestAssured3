@@ -1,6 +1,7 @@
 package extensions;
 
 
+import io.qameta.allure.Allure;
 import io.restassured.response.Response;
 import lombok.Getter;
 import models.UserLoginData;
@@ -90,7 +91,7 @@ public class LoginExtension implements BeforeEachCallback {
         });
 
         step("авторизация прошла успешно,вы зашли под такими данными", () -> {
-            System.out.printf("логин %s \n пароль %s ",System.getProperty("login"),System.getProperty("password"));
+            Allure.addAttachment("Авторизационные данные", String.format("Логин: %s\nПароль: %s", username, password));
         });
 
 
