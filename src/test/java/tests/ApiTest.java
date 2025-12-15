@@ -64,7 +64,11 @@ public class ApiTest extends TestBase {
     }
 
 
-    @Test
+   /*
+   ТАК НЕПРАВИЛЬНО! ТЕСТЫ НЕ ДОЛЖНЫ ЗАВИСЕТЬ ОТ ДРУГИХ ТЕСТОВ! А ОНИ ЗАВИСЯТ
+   ГДЕ У ТЕБЯ ПОДГОТОВКА ДАННЫХ? (clearBasket,addBookToBasketByISBN,openBrowserAuthorized)
+
+   @Test
     @WithLogin
     public void deleteABookFromBasket() {
 
@@ -76,6 +80,30 @@ public class ApiTest extends TestBase {
             USER_PAGE.checkBookAbsenceByTitle(BOOK_TITLE2);
         });
     }
+*/
 
+
+    /**
+     * ТУТ ПРАВИЛЬНО,ТЕСТ НЕЗАВИСИТ ОТ addABookToBasket!!подготоавливаем данные и только потом удаляем!
+     */
+    @Test
+    @WithLogin
+    public void deleteABookFromBasket() {
+
+        step("подготовка данных", () -> {
+            REQUESTS.clearBasket();
+            REQUESTS.addBookToBasketByISBN(RANDOM_ISBN, RANDOM_ISBN2);
+        });
+
+        USER_PAGE.openBrowserAuthorized();
+
+        step("удаление книги " + BOOK_TITLE2, () -> {
+            USER_PAGE.bookRemovalByIndex(INDEX);
+        });
+
+        step("проверка отсутствия книги " + BOOK_TITLE2, () -> {
+            USER_PAGE.checkBookAbsenceByTitle(BOOK_TITLE2);
+        });
+    }
 
 }

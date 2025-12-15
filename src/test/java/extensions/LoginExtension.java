@@ -42,7 +42,7 @@ public class LoginExtension implements BeforeEachCallback {
     @Getter
     private final String login = System.getProperty("login", "Clint");
     @Getter
-    private final String credentials = System.getProperty("password", "Clint");
+    private final String credentials = System.getProperty("password", "Clint123456@");
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
@@ -99,7 +99,7 @@ public class LoginExtension implements BeforeEachCallback {
         });
 
 
-        step("Открываем профиль уже с куки", () -> USER_PAGE.openBrowserAuthorized());
+        step("Открываем профиль уже с куки", USER_PAGE::openBrowserAuthorized);
 
 
     }
